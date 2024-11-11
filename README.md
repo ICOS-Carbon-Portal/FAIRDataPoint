@@ -36,12 +36,22 @@ e.g. [app.fairdatapoint.org/swagger-ui.html](https://app.fairdatapoint.org/swagg
 
 ### Technology Stack
 
-- **Java** (JDK 17)
+- **Java** (JDK 21)
 - **MongoDB** (4.2)
 - **Maven** (3.2.5 or higher)
 - **Docker** (19.03.0-ce or higher) - *for building Docker image only*
 
 ### Build & Run
+
+To build the application, one dependency needs to be built and installed locally first.
+
+```bash
+$ git clone git@github.com:FAIRDataTeam/spring-security-acl-mongodb.git
+
+$ cd spring-security-acl-mongodb
+
+$ mvn install
+```
 
 To run the application, a MongoDB instance is required to be running. To configure the MongoDB with standard
 connection (`mongodb://localhost:27017/fdp`), simply instruct Spring Boot to use the `development` profile. Then run:
@@ -74,21 +84,18 @@ Run from the root of the project:
 $ mvn package
 ```
 
-### Create a Docker image
-
-Run from the root of the project (requires building `jar` file using `mvn package` as shown above):
+### Fast packaging without running the tests
 
 ```bash
-$ docker build -t fairdatapoint:local .
+$ mvn -Dmaven.test.skip=true package
 ```
 
-### Build using Docker
+### Create a Docker image
 
-If you do not have Java and Maven locally, you can build the Docker image using Docker (instead of using locally
-built `jar` file):
+Run from the root of the project (requires prior building `jar` file using `mvn package` as shown above):
 
 ```bash
-$ docker build -f Dockerfile.build -t fairdatapoint:local .
+$ docker build -t fairdatapoint:legacy .
 ```
 
 ## Security

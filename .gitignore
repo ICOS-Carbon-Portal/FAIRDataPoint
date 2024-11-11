@@ -4,3 +4,6 @@ target/
 # Netbeans
 nb-configuration\.xml
 /nbproject/
+
+# VSCode
+/.vscode/
